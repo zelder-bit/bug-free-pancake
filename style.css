@@ -1,12 +1,81 @@
-* {
-    border: 1px solid red;
+body {
+    display: flex;
     box-sizing: border-box;
+    flex-direction: column;
+    margin: 0;
+}
+
+
+.container {
+    border: 3px solid blue;
+    width: 900px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    justify
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid green;
+    width: 60%;
+    margin: auto;
+    background-color: #f9f5d7;
+    border-radius: 20px;
+}
+
+.display {
+    background-color: #3c3836;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5%;
+    margin: 2%;
+}
+
+.solution {
+    font-size: 16pt;
+    color: #fabd2f;
+}
+
+.button-row {
+    margin-left: 3%;
+    margin-botton: 3%;
+}
+
+.lower-section {
+    display: flex;
+    justify-content: spaced-evenly;
+}
+
+.numbers {
+    width: 50%;
+    padding: 5%;
+}
+
+.button-row {
+    padding: 1%;
+}
+
+.button-row button:hover { background: rgb(116,116,116); }
+.button-row button:active { background: rgb(60,56,54); }
+
+.button-row button {
+    color: rgb(246, 110, 4); font-size: 11px; line-height: 11px; padding: 30px; border-radius: 0px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(60, 56, 54) 0%, rgb(60, 56, 54) 100%); box-shadow: rgba(0, 0, 0, 0) 4px 1px 15px 5px; border: 5px solid rgb(116, 116, 116); display: inline-block;
+}
+
+.operators {
     display: flex;
     flex-direction: column;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.operators button:hover { background: rgb(116,116,116); }
+.operators button:active { background: rgb(60,56,54); }
+
+.operators button {
+    color: rgb(246, 110, 4); font-size: 11px; line-height: 11px; padding: 30px; border-radius: 0px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(60, 56, 54) 0%, rgb(60, 56, 54) 100%); box-shadow: rgba(0, 0, 0, 0) 4px 1px 15px 5px; border: 5px solid rgb(116, 116, 116); display: inline-block;
+}
+
+#last-row {
+    outline: 2px solid red;
 }
