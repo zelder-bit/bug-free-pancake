@@ -5,10 +5,6 @@ let input_numbers = [];
 let initialDisplay = ['00000000000000000'];
 let solution = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-  const displaySolution = document.getElementById('solution');
-  displaySolution.textContent = 'POOP';
-
 
 document.querySelectorAll('.button-row button').forEach(btn => {
   btn.addEventListener('click', () => {
