@@ -1,6 +1,24 @@
 let firstEntry = 0;
 let secondEntry = 0;
-let operator;
+let operators = [];
+let input_numbers = [];
+let initialDisplay = ['00000000000000000'];
+let solution = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const displaySolution = document.getElementById('solution');
+  displaySolution.textContent = 'POOP';
+
+
+document.querySelectorAll('.button-row button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const calc_button_press = btn.textContent;
+    // placeholder: update display logic
+  });
+});
+
+
+//document.getElementById('equals-button').addEventListener('onclick', evaluate_solution);
 
 const operator_function = function (number1, operator, number2) {
   if (operator == '+') {
