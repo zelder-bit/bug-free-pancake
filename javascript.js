@@ -7,9 +7,13 @@ let answer = [];
 
 let solution_screen = document.getElementById('solution');
 
+let calculate = function (array) {
+
+}
 
 
-
+// On button click, update the display by appending the pressed number to the current input string.
+// Reset when starting fresh and set the solution span’s textContent.
 document.querySelectorAll('.button-row button').forEach(btn => {
   btn.addEventListener('click', () => {
     const calc_button_press = btn.textContent;
@@ -24,6 +28,19 @@ document.querySelectorAll('.button-row button').forEach(btn => {
   });
 });
 
+
+document.querySelectorAll('.operators button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const operator_press = btn.textContent;
+    console.log(operator_press);
+    if (initialDisplay.length == 1 && initialDisplay[0] == '00000000000000000') {
+      console.log('ERROR - WIP');
+    } else {
+      initialDisplay.push(operator_press);
+    };
+    solution_screen.textContent = initialDisplay.join(' ');
+  });
+});
 
 //document.getElementById('equals-button').addEventListener('onclick', evaluate_solution);
 
