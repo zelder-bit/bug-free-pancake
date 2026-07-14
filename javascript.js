@@ -3,13 +3,24 @@ let secondEntry = 0;
 let operators = [];
 let input_numbers = [];
 let initialDisplay = ['00000000000000000'];
-let solution = [];
+let answer = [];
+
+let solution_screen = document.getElementById('solution');
+
+
 
 
 document.querySelectorAll('.button-row button').forEach(btn => {
   btn.addEventListener('click', () => {
     const calc_button_press = btn.textContent;
-    // placeholder: update display logic
+    console.log(calc_button_press);
+    if (initialDisplay.length == 1 && initialDisplay[0] == '00000000000000000') {
+      initialDisplay.length = 0;
+      initialDisplay.push(calc_button_press);
+    } else {
+      initialDisplay.push(calc_button_press);
+    };
+    solution_screen.textContent = initialDisplay.join(' ');
   });
 });
 
