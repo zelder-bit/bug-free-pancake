@@ -7,10 +7,6 @@ let answer = [];
 
 let solution_screen = document.getElementById('solution');
 
-let calculate = function (array) {
-
-}
-
 
 // On button click, update the display by appending the pressed number to the current input string.
 // Reset when starting fresh and set the solution span’s textContent.
@@ -69,4 +65,8 @@ const multiplication = function (number1, number2) {
 
 const division = function (number1, number2) {
   return number1 / number2;
+}
+
+while (initialDisplay) {
+
 }
