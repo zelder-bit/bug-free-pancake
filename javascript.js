@@ -6,6 +6,15 @@ let initialDisplay = ['00000000000000000'];
 let answer = [];
 
 let solution_screen = document.getElementById('solution');
+let clearButton = document.getElementById('clear-button');
+
+//Resets the screen when clear is pushed.
+clearButton.addEventListener('click', () => {
+  initialDisplay.length = 0;
+  initialDisplay[0] = '00000000000000000';
+  solution_screen.textContent = initialDisplay.join('');
+});
+
 
 
 // On button click, update the display by appending the pressed number to the current input string.
@@ -20,7 +29,7 @@ document.querySelectorAll('.button-row button').forEach(btn => {
     } else {
       initialDisplay.push(calc_button_press);
     };
-    solution_screen.textContent = initialDisplay.join(' ');
+    solution_screen.textContent = initialDisplay.join('');
   });
 });
 
@@ -34,9 +43,10 @@ document.querySelectorAll('.operators button').forEach(btn => {
     } else {
       initialDisplay.push(operator_press);
     };
-    solution_screen.textContent = initialDisplay.join(' ');
+    solution_screen.textContent = initialDisplay.join('');
   });
 });
+
 
 //document.getElementById('equals-button').addEventListener('onclick', evaluate_solution);
 
@@ -68,5 +78,5 @@ const division = function (number1, number2) {
 }
 
 while (initialDisplay) {
-
+  initialDisplay.reduce()
 }
