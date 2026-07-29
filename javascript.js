@@ -1,12 +1,14 @@
 let firstEntry = 0;
 let secondEntry = 0;
 let operators = [];
+let operatorPrecedence = ['^', '(', ')', '*', '/', '+', '-'];
 let input_numbers = [];
 let initialDisplay = ['00000000000000000'];
 let answer = [];
 
 let solution_screen = document.getElementById('solution');
 let clearButton = document.getElementById('clear-button');
+let equalsButton = document.getElementById('equals-button');
 
 //Resets the screen when clear is pushed.
 clearButton.addEventListener('click', () => {
@@ -14,6 +16,18 @@ clearButton.addEventListener('click', () => {
   initialDisplay[0] = '00000000000000000';
   solution_screen.textContent = initialDisplay.join('');
 });
+
+equalsButton.addEventListener('click', () => {
+  initialDisplay.map(item => {
+    if (operatorPrecedence.includes(item)) {
+      operators.push(item);
+    } else {
+      input_numbers.push(item);
+    };
+  });
+  let totalPieces = (operators.length + input_numbers.length);
+
+})
 
 
 
@@ -47,9 +61,6 @@ document.querySelectorAll('.operators button').forEach(btn => {
   });
 });
 
-
-//document.getElementById('equals-button').addEventListener('onclick', evaluate_solution);
-
 const operator_function = function (number1, operator, number2) {
   if (operator == '+') {
     return addition(number1, number2);
@@ -75,8 +86,4 @@ const multiplication = function (number1, number2) {
 
 const division = function (number1, number2) {
   return number1 / number2;
-}
-
-while (initialDisplay) {
-  initialDisplay.reduce()
 }
