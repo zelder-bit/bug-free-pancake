@@ -27,4 +27,14 @@ The calculator should be able to handle expressions like:
 - `(1 + 2) * 3`
 - Complex nested expressions with proper precedence handling
 
-This project uses a stack-based approach for parsing and evaluation, which is efficient and handles complex mathematical expressions correctly.
+The project uses a stack-based approach for parsing and evaluation, which is efficient and handles complex mathematical expressions correctly.
+
+## JavaScript File Overview
+
+`javascript.js` sets up the calculator’s runtime behaviour:
+- **State variables** – arrays (`operators`, `input_numbers`, `initialDisplay`) hold the current input and operator sequence.
+- **Button event handlers** – all number and operator buttons append their value to `initialDisplay` and immediately update the `<span id="solution">` display. The clear button resets to the placeholder text.
+- **Equals handling** – on clicking "=", the script partitions the current input into numbers and operators based on a precedence list; evaluation logic is yet to be wired in.
+- **Utility functions** – `operator_function`, `addition`, `subtraction`, etc. provide basic arithmetic.
+
+This layout keeps display updates decoupled from the parsing logic, making it easier to extend the calculator with more operations or UI changes.
