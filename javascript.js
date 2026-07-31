@@ -12,12 +12,15 @@ let equalsButton = document.getElementById('equals-button');
 
 //Resets the screen when clear is pushed.
 clearButton.addEventListener('click', () => {
+  operators.length = 0;
+  input_numbers.length = 0;
   initialDisplay.length = 0;
   initialDisplay[0] = '00000000000000000';
   solution_screen.textContent = initialDisplay.join('');
 });
 
 equalsButton.addEventListener('click', () => {
+
   initialDisplay.map(item => {
     if (operatorPrecedence.includes(item)) {
       operators.push(item);
@@ -25,9 +28,22 @@ equalsButton.addEventListener('click', () => {
       input_numbers.push(item);
     };
   });
-  let totalPieces = (operators.length + input_numbers.length);
 
-})
+  previousAnswerIndex = (answer.length - 1) - 1;
+  previousAnwser = answer[previousAnswerIndex];
+
+  console.log(operators);
+  console.table(input_numbers)
+  let totalPieces = (operators.length + input_numbers.length);
+  answer.push(operator_function(input_numbers[0], operators[0], input_numbers[1]));
+  console.log(answer);
+  initialDisplay.length = 0;
+  initialDisplay[0] = answer;
+  solution_screen.textContent = initialDisplay.join('');
+  //solution_screen.textContent = String(answer[(answer.length - 1)]);
+  console.log(solution_screen, solution_screen.tagName, solution_screen.isConnected);
+  console.log(solution_screen.textContent + ' I am solution screen');
+});
 
 
 
@@ -52,9 +68,12 @@ document.querySelectorAll('.operators button').forEach(btn => {
   btn.addEventListener('click', () => {
     const operator_press = btn.textContent;
     console.log(operator_press);
-    if (initialDisplay.length == 1 && initialDisplay[0] == '00000000000000000') {
+    if (btn.id == 'equals-button') {
+      cosole.log('Do Nothing');
+    } else if (initialDisplay.length == 1 && initialDisplay[0] == '00000000000000000') {
       console.log('ERROR - WIP');
     } else {
+      console.log('Push to operator press');
       initialDisplay.push(operator_press);
     };
     solution_screen.textContent = initialDisplay.join('');
@@ -73,7 +92,7 @@ const operator_function = function (number1, operator, number2) {
 
 
 const addition = function (number1, number2) {
-  return number1 + number2;
+  return (+number1 + +number2);
 }
 
 const subtraction = function (number1, number2) {
