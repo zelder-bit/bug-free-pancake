@@ -33,12 +33,15 @@ equalsButton.addEventListener('click', () => {
   previousAnwser = answer[previousAnswerIndex];
 
   console.log(operators);
-  console.table(input_numbers)
+  console.table(input_numbers);
+
   let totalPieces = (operators.length + input_numbers.length);
+
   answer.push(operator_function(input_numbers[0], operators[0], input_numbers[1]));
+
   console.log(answer);
   initialDisplay.length = 0;
-  initialDisplay[0] = answer;
+  initialDisplay[0] = answer[(answer.length - 1)];
   solution_screen.textContent = initialDisplay.join('');
   //solution_screen.textContent = String(answer[(answer.length - 1)]);
   console.log(solution_screen, solution_screen.tagName, solution_screen.isConnected);
@@ -49,7 +52,7 @@ equalsButton.addEventListener('click', () => {
 
 // On button click, update the display by appending the pressed number to the current input string.
 // Reset when starting fresh and set the solution span’s textContent.
-document.querySelectorAll('.button-row button').forEach(btn => {
+document.querySelectorAll('.number').forEach(btn => {
   btn.addEventListener('click', () => {
     const calc_button_press = btn.textContent;
     console.log(calc_button_press);
@@ -64,7 +67,7 @@ document.querySelectorAll('.button-row button').forEach(btn => {
 });
 
 
-document.querySelectorAll('.operators button').forEach(btn => {
+document.querySelectorAll('.operator').forEach(btn => {
   btn.addEventListener('click', () => {
     const operator_press = btn.textContent;
     console.log(operator_press);
