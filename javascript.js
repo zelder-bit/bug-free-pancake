@@ -5,7 +5,7 @@ let operators = [];
 let operatorPrecedence = ['^', '(', ')', '*', '/', '+', '-'];
 let input_numbers = [];
 let initialDisplay = ['00000000000000000'];
-let answer = [];
+let answers = [];
 
 // References to the calculator display and control buttons.
 let solution_screen = document.getElementById('solution');
@@ -17,31 +17,50 @@ clearButton.addEventListener('click', () => {
   operators.length = 0;
   input_numbers.length = 0;
   initialDisplay.length = 0;
+  answers.length = 0;
   initialDisplay[0] = '00000000000000000';
   solution_screen.textContent = initialDisplay.join('');
 });
 
 // Separate the current input into numbers and operators, calculate it, and show the latest answer.
 equalsButton.addEventListener('click', () => {
+  if (initialDisplay.length == 1 && initialDisplay[0] == '00000000000000000') {
+    return;
+  }
+  operator_index_postitions = [];
 
-  initialDisplay.map(item => {
-    if (operatorPrecedence.includes(item)) {
-      operators.push(item);
-    } else {
+  initialDisplay.forEach((item, index, array) => {
+
+    if (!operatorPrecedence.includes(item)) {
       input_numbers.push(item);
-    };
+    } else {
+      operators.push(item);
+      operator_index_postitions.push(index);
+    }
   });
 
-  previousAnswerIndex = (answer.length - 1) - 1;
-  previousAnwser = answer[previousAnswerIndex];
+  console.log(operators + " I am operators");
+  console.log(input_numbers + " I am input_numbers");
+
+  previousAnswerIndex = (answers.length - 1) - 1;
+  previousAnwser = answers[previousAnswerIndex];
 
   let totalPieces = (operators.length + input_numbers.length);
 
-  answer.push(operator_function(input_numbers[0], operators[0], input_numbers[1]));
+  finalNumbers = [];
+
+  input_numbers.forEach((item, index, array) => {
+
+  });
+
+  answers.push(operator_function(input_numbers[0], operators[0], input_numbers[1]));
+  console.log(answers)
 
   initialDisplay.length = 0;
-  initialDisplay[0] = answer[(answer.length - 1)];
+  initialDisplay[0] = answers[(answers.length - 1)];
   solution_screen.textContent = initialDisplay.join('');
+  input_numbers.length = 0;
+  operators.length = 0;
   //solution_screen.textContent = String(answer[(answer.length - 1)]);
 });
 
@@ -69,8 +88,8 @@ document.querySelectorAll('.operator').forEach(btn => {
     const operator_press = btn.textContent;
     if (btn.id == 'equals-button') {
       // Equals is handled by its dedicated event listener.
-    } else if (initialDisplay.length == 1 && initialDisplay[0] == '00000000000000000') {
-      // Ignore operators until a number starts the expression.
+    } else if (initialDisplay.length == 1) {
+        initialDisplay.push(operator_press);
     } else {
       initialDisplay.push(operator_press);
     };
