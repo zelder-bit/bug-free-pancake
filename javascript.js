@@ -28,15 +28,20 @@ equalsButton.addEventListener('click', () => {
     return;
   }
   operator_index_postitions = [];
+  let completeNumber = '';
 
   initialDisplay.forEach((item, index, array) => {
-
     if (!operatorPrecedence.includes(item)) {
-      input_numbers.push(item);
+      console.log('I am item ' + item + ': And here is my type: ' + typeof item);
+      completeNumber += item;
+      console.log(completeNumber);
     } else {
       operators.push(item);
       operator_index_postitions.push(index);
+      input_numbers.push(completeNumber);
+      completeLength = 0;
     }
+    input_numbers.push(completeNumber);
   });
 
   console.log(operators + " I am operators");
@@ -48,10 +53,6 @@ equalsButton.addEventListener('click', () => {
   let totalPieces = (operators.length + input_numbers.length);
 
   finalNumbers = [];
-
-  input_numbers.forEach((item, index, array) => {
-
-  });
 
   answers.push(operator_function(input_numbers[0], operators[0], input_numbers[1]));
   console.log(answers)
