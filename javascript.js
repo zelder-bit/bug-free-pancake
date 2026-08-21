@@ -39,10 +39,10 @@ equalsButton.addEventListener('click', () => {
       operators.push(item);
       operator_index_postitions.push(index);
       input_numbers.push(completeNumber);
-      completeLength = 0;
+      completeNumber = '';
     }
-    input_numbers.push(completeNumber);
   });
+  input_numbers.push(completeNumber);
 
   console.log(operators + " I am operators");
   console.log(input_numbers + " I am input_numbers");
@@ -55,7 +55,7 @@ equalsButton.addEventListener('click', () => {
   finalNumbers = [];
 
   answers.push(operator_function(input_numbers[0], operators[0], input_numbers[1]));
-  console.log(answers)
+  //console.log(answers)
 
   initialDisplay.length = 0;
   initialDisplay[0] = answers[(answers.length - 1)];
