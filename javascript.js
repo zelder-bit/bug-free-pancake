@@ -1,32 +1,37 @@
 // Calculator state and supported operators.
-let firstEntry = 0;
-let secondEntry = 0;
 let operators = [];
 let operatorPrecedence = ['^', '(', ')', '*', '/', '+', '-'];
 let input_numbers = [];
 let initialDisplay = ['00000000000000000'];
 let answers = [];
+let previousAnswer = '';
+let previousAnswerIndex;
+let operator_pressed = false;
 
 // References to the calculator display and control buttons.
 let solution_screen = document.getElementById('solution');
 let clearButton = document.getElementById('clear-button');
 let equalsButton = document.getElementById('equals-button');
 
-// Reset the calculator state and display when CLEAR is pressed.
-clearButton.addEventListener('click', () => {
+//shared resets between equals and clear
+let resetUnderlyingCalc = function () {
   operators.length = 0;
   input_numbers.length = 0;
   initialDisplay.length = 0;
+  operator_pressed = false;
+};
+
+// Reset the calculator state and display when CLEAR is pressed.
+clearButton.addEventListener('click', () => {
+  resetUnderlyingCalc();
   answers.length = 0;
+  previousAnswer = '';
   initialDisplay[0] = '00000000000000000';
   solution_screen.textContent = initialDisplay.join('');
 });
 
 // Separate the current input into numbers and operators, calculate it, and show the latest answer.
 equalsButton.addEventListener('click', () => {
-  if (initialDisplay.length == 1 && initialDisplay[0] == '00000000000000000') {
-    return;
-  }
   operator_index_postitions = [];
   let completeNumber = '';
 
@@ -47,22 +52,22 @@ equalsButton.addEventListener('click', () => {
   console.log(operators + " I am operators");
   console.log(input_numbers + " I am input_numbers");
 
-  previousAnswerIndex = (answers.length - 1) - 1;
-  previousAnwser = answers[previousAnswerIndex];
-
   let totalPieces = (operators.length + input_numbers.length);
 
-  finalNumbers = [];
 
+  if (operators[0] == '/' && input_numbers[1] == 0) {
+    alert("Cannot divide by 0");
+    return;
+  }
   answers.push(operator_function(input_numbers[0], operators[0], input_numbers[1]));
+  previousAnswerIndex = (answers.length - 1) - 1;
   //console.log(answers)
 
-  initialDisplay.length = 0;
+  resetUnderlyingCalc();
   initialDisplay[0] = answers[(answers.length - 1)];
   solution_screen.textContent = initialDisplay.join('');
-  input_numbers.length = 0;
-  operators.length = 0;
   //solution_screen.textContent = String(answer[(answer.length - 1)]);
+  return previousAnswer = answers[previousAnswerIndex];
 });
 
 
@@ -73,6 +78,11 @@ document.querySelectorAll('.number').forEach(btn => {
   btn.addEventListener('click', () => {
     const calc_button_press = btn.textContent;
     if (initialDisplay.length == 1 && initialDisplay[0] == '00000000000000000') {
+      initialDisplay.length = 0;
+      initialDisplay.push(calc_button_press);
+    } else if (operator_pressed == false && previousAnswer != '') {
+      previousAnswer = '';
+      answers.length = 0;
       initialDisplay.length = 0;
       initialDisplay.push(calc_button_press);
     } else {
@@ -89,10 +99,11 @@ document.querySelectorAll('.operator').forEach(btn => {
     const operator_press = btn.textContent;
     if (btn.id == 'equals-button') {
       // Equals is handled by its dedicated event listener.
-    } else if (initialDisplay.length == 1) {
-        initialDisplay.push(operator_press);
-    } else {
+    } else if (initialDisplay.length >= 1 && initialDisplay[0] != '00000000000000000' && operator_pressed == false) {
       initialDisplay.push(operator_press);
+      operator_pressed = true;
+    } else {
+      console.log("ERROR - No need for operator here");
     };
     solution_screen.textContent = initialDisplay.join('');
   });
